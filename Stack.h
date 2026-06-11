@@ -5,6 +5,7 @@
 #include <ostream>
 
 #include "Node.h"
+#include "EmptyStackException.h"
 
 template <typename T>
 class Stack {
@@ -26,8 +27,7 @@ public:
 
     T pop() {
         if (topNode == nullptr) {
-            std::cout << "Stos jest pusty" << std::endl;
-            return T();
+            throw EmptyStackException();
         }
         Node<T>* nodeToRemove = topNode;
         T valueToReturn = nodeToRemove->getValue();
@@ -38,8 +38,7 @@ public:
 
     T peek() {
         if (topNode == nullptr) {
-            std::cout << "Stos jest pusty" << std::endl;
-            return T();
+            throw EmptyStackException();
         }
         else {
             return topNode->getValue();

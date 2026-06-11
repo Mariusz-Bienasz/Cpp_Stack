@@ -23,33 +23,39 @@ int main() {
 
         switch (opcja) {
             case 1:
-                cout << "Podaj wartosc (liczbe) przypadku do dodania: ";
+                cout << "Podaj wartosc przypadku do dodania: ";
                 cin >> przypadek;
                 myStack.push(przypadek);
                 cout << "Dodano " << przypadek << " na stos." << endl;
                 break;
-
             case 2:
-                if (myStack.getTopNode() == nullptr) {
-                    myStack.pop();
-                } else {
-                    przypadek = myStack.pop();
-                    cout << "Odejmowanie. Usunieto przypadek o wartosci: " << przypadek << endl;
+                try {
+                    if (myStack.getTopNode() == nullptr) {
+                        myStack.pop();
+                    } else {
+                        przypadek = myStack.pop();
+                        cout << "Odejmowanie. Usunieto przypadek o wartosci: " << przypadek << endl;
+                    }
+                }
+                catch (const EmptyStackException& e) {
+                    cout << e.what() << endl;
                 }
                 break;
-
             case 3:
-                if (myStack.getTopNode() == nullptr) {
-                    myStack.peek();
-                } else {
-                    cout << "Na samym szczycie stosu znajduje sie: " << myStack.peek() << endl;
+                try {
+                    if (myStack.getTopNode() == nullptr) {
+                        myStack.peek();
+                    } else {
+                        cout << "Na samym szczycie stosu znajduje sie: " << myStack.peek() << endl;
+                    }
+                }
+                catch (const EmptyStackException& e) {
+                    cout << e.what() << endl;
                 }
                 break;
-
             case 0:
                 cout << "Koniec dzialania programu." << endl;
                 break;
-
             default:
                 cout << "Nieznana opcja. Sprobuj ponownie." << endl;
                 break;
